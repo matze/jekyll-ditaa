@@ -40,6 +40,13 @@ When re-generating the site, the generated image is inserted into the page:
 
 ![ditaa output](http://i.imgur.com/QWAfY.png)
 
-Remember though, the images are written into `images/ditaa` and must therefore
-exist. Moreover, if you haven't auto-regenerate enabled, the images might not
-get copied. In this case you have to run a second Jekyll pass. 
+ditaa options can be passed through the tag:
+
+    {% ditaa -S -E %}
+    +---------------------------+
+    | No separation and shadows |
+    +---------------------------+
+    {% endditaa %}
+
+_Note_: If you haven't auto-regenerate enabled, the images might not get copied.
+In this case you have to run a second Jekyll pass. 
