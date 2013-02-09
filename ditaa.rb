@@ -15,7 +15,7 @@ module Jekyll
       ditaa.gsub!(/^$\n/, "")
       ditaa.gsub!(/^\[\"\n/, "")
       ditaa.gsub!(/\"\]$/, "")
-      ditaa.gsub!(/\n+$/, "")
+      ditaa.gsub!(/\\\\/, "\\")
 
       hash = Digest::MD5.hexdigest(@nodelist.to_s + options)
       ditaa_home = 'images/ditaa/'
