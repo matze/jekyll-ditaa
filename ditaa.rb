@@ -34,7 +34,7 @@ module Jekyll
 
     def render(context)
       if @png_exists
-         '<figure><a href="/' + @png_name + '" title="picture" rel="bookmark"><img src="/' + @png_name + '" class="hm-cat-img" border="0" title="picture" width="80%" /></a></figure>'
+        '<figure><a href="/' + @png_name + '" title="' + @png_name + '" "><img src="/' + @png_name + '" title="' + @png_name + '" max-width ="99%" /></a></figure>'
       else
         '<code><pre>' + super + '</pre></code>'
       end
