@@ -50,3 +50,28 @@ ditaa options can be passed through the tag:
 
 _Note_: If you haven't auto-regenerate enabled, the images might not get copied.
 In this case you have to run a second Jekyll pass. 
+
+## Configuration
+
+You can use the `_config.yml` to specify the parameter `ditaa_output_directory` with the folder in which the rendered images will be placed:
+
+    ... _config.yml file ...
+    ...
+    ditaa_output_directory: /resources/ditaa
+    ...    
+    ... _config.yml file ...
+
+If not specified, the output directory will be `/images/ditaa` by default.
+
+_Note_: The plugin keeps this output directory clean, deleting all obsolete files (orphaned by all posts). No problem in keeping other content in this folder, as long as the filenames are not like "`ditaa-foobar.png`".
+
+The other parameter you can configure is `ditaa_debug_mode` which indicates if the plugin must show or not the output of the `ditaa` command line tool on building.
+
+    ... _config.yml file ...
+    ...
+    ditaa_output_directory: /resources/ditaa
+    ditaa_debug_mode: true
+    ...    
+    ... _config.yml file ...
+
+If not specified, the debug mode is disabled by default, keeping the build process silent.
