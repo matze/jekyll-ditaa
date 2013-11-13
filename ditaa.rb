@@ -5,6 +5,8 @@ module Jekyll
   module Tags
     class DitaaBlock < Liquid::Block
 
+      @@debug = false
+
       @@output_dir = "/images/ditaa"
       def self.output_dir
         @@output_dir
@@ -25,6 +27,9 @@ module Jekyll
         # Get the output_dir from the config or keep the hardcoded one if not defined.
         if !defined?(@@first_time)
           @@first_time = true
+          if ! site.config["ditaa_debug_mode"].nil?
+            @@debug = (site.config["ditaa_debug_mode"].to_s == 'true')
+          end
           if ! site.config["ditaa_output_directory"].nil?
             @@output_dir = site.config["ditaa_output_directory"]
           end
@@ -59,7 +64,10 @@ module Jekyll
         if @ditaa_exists
           # only render the new blocks
           if not File.exists?(png_path)
-            args = ' ' + @ditaa_options + ' -o &> /dev/null'  # silent execution
+            args = ' ' + @ditaa_options + ' -o '
+            if ! @@debug 
+              args += ' &> /dev/null'  # silent execution
+            end
             f = File.open('/tmp/ditaa-foo.txt', 'w')
             f.write(source)
             f.close
