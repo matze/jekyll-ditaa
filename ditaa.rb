@@ -66,7 +66,7 @@ module Jekyll
           if not File.exists?(png_path)
             args = ' ' + @ditaa_options + ' -o '
             if ! @@debug 
-              args += ' &> /dev/null'  # silent execution
+              args += ' >/dev/null '  # silent execution
             end
             f = File.open('/tmp/ditaa-foo.txt', 'w')
             f.write(source)
