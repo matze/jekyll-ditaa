@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'tempfile'
 require 'digest/md5'
 
 module Jekyll
@@ -68,11 +69,11 @@ module Jekyll
             if ! @@debug 
               args += ' >/dev/null '  # silent execution
             end
-            f = File.open('/tmp/ditaa-foo.txt', 'w')
+            f = Tempfile.new('ditaa')
             f.write(source)
             f.close
-            @png_exists = system('ditaa /tmp/ditaa-foo.txt ' + png_path + args)
-            File.delete(f)  # cleanup of temporary file
+            @png_exists = system('ditaa ' + f.path + ' ' + png_path + args)
+            f.unlink  # cleanup of temporary file
           end
         end
 
