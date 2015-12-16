@@ -17,6 +17,11 @@ module Jekyll
       def self.generated_files
         @@generated_files
       end
+      
+      @@baseurl = ""
+      def self.baseurl
+        @@baseurl
+      end
 
       def initialize(tag_name, options, tokens)
         super
@@ -33,6 +38,9 @@ module Jekyll
           end
           if ! site.config["ditaa_output_directory"].nil?
             @@output_dir = site.config["ditaa_output_directory"]
+          end
+          if ! site.config["baseurl"].nil?
+            @@baseurl = site.config["baseurl"]
           end
           # Verify and prepare the output folder (src) if it doesn't exist
           src_dir = File.join(site.source, @@output_dir)
@@ -59,7 +67,7 @@ module Jekyll
 
         # obtain the path of the file once generated
         png_name = 'ditaa-' + hash + '.png'
-        web_path = File.join(@@output_dir, png_name)
+        web_path = File.join(@@baseurl, @@output_dir, png_name)
         png_path = File.join(site.source, @@output_dir, png_name)
 
         if @ditaa_exists
