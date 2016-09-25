@@ -27,6 +27,10 @@ module Jekyll
         super
         @ditaa_exists = system('which ditaa > /dev/null 2>&1')
         @ditaa_options = options
+        if @ditaa_options.include? "--alt"
+          @alt_text = @ditaa_options.scan(/--alt "([^"]*)"/).last.first
+          @ditaa_options = @ditaa_options.sub /--alt "([">]*)"/, ''
+        end
       end
 
       def self.init_globals(site)
@@ -90,7 +94,7 @@ module Jekyll
           st = Jekyll::StaticFile.new(site, site.source, @@output_dir, png_name)
           @@generated_files << st
           site.static_files << st
-          return '<img src="' + web_path + '"/>'
+          return '<img src="' + web_path + '" alt="' + @alt_text +'"/>'
         else
           # return the code if failure
           return '<pre><code>' + source + '</code></pre>'

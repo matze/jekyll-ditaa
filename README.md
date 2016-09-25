@@ -49,7 +49,17 @@ ditaa options can be passed through the tag:
     {% endditaa %}
 
 _Note_: If you haven't auto-regenerate enabled, the images might not get copied.
-In this case you have to run a second Jekyll pass. 
+In this case you have to run a second Jekyll pass.
+
+You may also use the option `--alt` followed by text in quotes to specify alt text for the generated image:
+
+    {% ditaa -S --alt "Rounded box without Shadows" %}
+    /-----------------------------\
+    | Rounded box without shadows |
+    \-----------------------------/
+    {% endditaa %}
+
+This option is not passed to ditaa.
 
 ## Configuration
 
