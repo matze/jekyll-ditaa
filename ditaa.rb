@@ -30,6 +30,8 @@ module Jekyll
         if @ditaa_options.include? "--alt"
           @alt_text = @ditaa_options.scan(/--alt "([^"]*)"/).last.first
           @ditaa_options = @ditaa_options.sub /--alt "([">]*)"/, ''
+        else
+          @alt_text = ""
         end
       end
 
